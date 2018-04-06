@@ -1,0 +1,78 @@
+****************************** 刷题总结 ******************************
+1. Two pointers
+框架：
+函数 (输入) {
+    哈希表 -- 用来存储所有的char
+    左边 = 0;
+    右边 = 0;
+    数量 = 0;
+    循环体 （当右边到达结界跳出） {
+        if (右边指针达到条件) {
+            数量加一
+        }
+        哈希表右指针所在的位置value加一
+        指针右移
+        if (数量满足条件）{
+            加入结果
+        }
+        while/if (数量超出范围或者不满足条件) {
+            if (在左指针找出临界点) {
+                调整数量
+            }
+            哈希表左指针所在位置value加一
+            指针右移
+        }
+    }
+
+}
+
+2. PriorityQueue
+初始化 PriorityQueue 技巧
+PriorityQueue<T> pq = new PriorityQueue<T>(new Comparator<T>(){
+    @Override
+    public int compare(T t1, T t2) {
+        return t1.x - t2.x;  //从小到大
+    }
+})
+
+PriorityQueue<T> pq = new PriorityQueue<T>(new Comparator<T>(){
+    @Override
+    public int compare(T t1, T t2) {
+        return t2.x - t1.x;  //从大到小
+    }
+})
+
+PriorityQueue<T> pq = new PriorityQueue<T>(new Comparator<T>(){
+    @Override
+    public int compare(T t1, T t2) {
+        //求到某个点的距离长短，从近到远
+        int diff = distance(t1, g) - distance(t2, g);
+        if (diff == 0) {
+            diff = t1.x - t2.x;
+        }
+        if (diff == 0) {
+            diff = t1.y - t2.y;
+        }
+        return diff；
+        // 从远到近
+        // int diff = distance(t2, g) - distance(t1, g);
+        // if (diff == 0) {
+        //     diff = t2.x - t1.x;
+        // }
+        // if (diff == 0) {
+        //     diff = t2.y - t1.y;
+        // }
+        // return diff
+    }
+})
+
+3. Linkedlist 解题技巧
+    a. prev
+    b. slow/fast ListNode
+    c. dummy/nHead/Node
+
+4. DP longest subsequence/substring/subarray
+    1. Arrays.sort() (If needed)
+    2. 1D dp array
+    3. initiate value with 1/0
+    4. 从1开始左右递推，s.charAt(i) == s.charAt(j) / pairs[i][0] > pairs[j][1]
